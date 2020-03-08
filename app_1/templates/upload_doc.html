@@ -1,0 +1,31 @@
+{% extends 'index.html'%}
+{% load crispy_forms_tags %}
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            {% if form.errors %}
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error|escape }}</strong>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% for error in form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data" action="">
+                {% csrf_token %}
+                {{ form | crispy }}
+                <input type="submit" class="btn btn-primary">
+                <a href="/index/" class="btn btn-default">back</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

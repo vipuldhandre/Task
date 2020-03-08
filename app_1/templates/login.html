@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block container %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-lg-4"></div>
+        <div class="col-md-8 col-lg-4">
+            <form method="post" action="/">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" name="username" />
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password" />
+                </div>
+                <div class="form-group text-right">
+                    <a href="/registration/">Register now!</a>
+                    <input type="submit" value="Login" class="btn btn-primary" />
+                </div>
+            </form>
+            <h4 style="text-align:center;color:red;">{{ error }}</h4>
+        </div>
+        <div class="col-md-2 col-lg-4"></div>
+    </div>
+</div>
+{% endblock %}
